@@ -143,24 +143,24 @@ function checkAccount(accountName) {
 
 function getAccountBalance() {
     inquirer
-    .prompt([
-        {
-            name: 'nameAccount',
-            message: 'Qual nome da conta deseja o saldo'
-        },
-    ]).then((answer) =>{
-        const accountName = name['AccountName']
+        .prompt([
+            {
+                name: 'accountName',
+                message: 'Qual nome da conta deseja o saldo'
+            },
+        ]).then((answer) => {
+            const accountName = answer['accountName']
 
-        if(!checkAccount(accountName)){
-            return getAccountBalance()
-        }
+            if (!checkAccount(accountName)) {
+                return getAccountBalance()
+            }
 
-        const accountData = getAccount(accountName)
+            const accountData = getAccount(accountName)
 
-        console.log(
-            chalk.bgBlue.black('Ola, o saldo da sua conta e de:'(accountData.balance)
-            ),
-        )
-        operation()
-    })
+            console.log(
+                chalk.bgBlue.black(`Ola, o saldo da sua conta e de:$(accountData.balance)`
+                ),
+            )
+            operation()
+        })
 }
